@@ -6,6 +6,8 @@
  */
 void iniciar_agenda(Agenda *agenda){
 
+    *agenda->num_contactos = 0;
+
 }
 
 
