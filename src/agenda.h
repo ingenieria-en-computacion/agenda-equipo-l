@@ -8,12 +8,12 @@ enum Mes{ENERO, FEBERO, MARZO, ABRIL, MAYO, JUNIO, JULIO, SEPTIEMBRE, OCTUBRE, N
 
 struct Persona{
     char nombre[30];
-    // apellido
-    // mes de nacimiento
-    // dia de nacimiento
+    char apellido[30];
+    enum Mes;
+    int dia_nac;
     // tipo contacto
-    // numero de telefono
-    // tipo de numero
+    char num_tel[11];
+    enum TipoTelefono;
 };
 
 typedef struct Persona Contacto;
