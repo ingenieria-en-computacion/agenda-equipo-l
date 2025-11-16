@@ -1,5 +1,6 @@
 #include "agenda.h"
-//hola
+#include <string.h>
+#include <stdio.h>
 
 /**
  * Esta función se encarga de iniciar el número de contactos a cero
@@ -83,6 +84,7 @@ void mostrar_contacto(Contacto){
  * Función auxiliar para leer un contacto
  */
 void leer_contacto(Contacto *c){
+
 
 }
 

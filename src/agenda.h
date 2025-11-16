@@ -25,7 +25,7 @@ typedef struct Agenda{
 
 
 void iniciar_agenda(Agenda *agenda);
-void agregar_contacto(Agenda *agenda, Contacto c);
+void agregar_contacto(Agenda *agenda);
 void imprimir_agenda(Agenda agenda);
 int buscar_contacto(Agenda *agenda, char *nombre);
 int buscar_contacto_x_telefono(Agenda *agenda, char telefono[]);
