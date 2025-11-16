@@ -11,7 +11,7 @@ struct Persona{
     char apellido[30];
     enum Mes;
     int dia_nac;
-    // tipo contacto
+    // tipo contacto.
     char num_tel[11];
     enum TipoTelefono;
 };
