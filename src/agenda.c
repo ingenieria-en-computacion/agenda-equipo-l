@@ -37,7 +37,12 @@ int buscar_contacto(Agenda *agenda, char *nombre){
  * Esta función  sirve para buscar un contacto por su número de telefono en la agenda
  */
 int buscar_contacto_x_telefono(Agenda *agenda, char telefono[]){
-
+    for(int i = 0; i < agenda->cantidad; i++) {
+        if(strcmp(agenda->contactos[i].telefono, telefono) == 0) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 
@@ -62,13 +67,19 @@ void ordenar_contactos(Agenda *a){
  * Esta función sirve para ordenar los contactos por nombres de forma descendente
  */
 void ordenar_contactos_inv(Agenda *a){
-    int i, j;
     Contacto temp;
-    for(i = 0; i < a->num_contactos; i++){
-        for(j=0; j < a->num_contactos-i-1; j++){
-            //Completar basandose en la función anterior
-        }
-    }
+    
+    for(int i = 0; i < agenda->cantidad - 1; i++) {
+        for(int j = 0; j < agenda->cantidad - 1 - i; j++) {
+            if(strcasecmp(agenda->contactos[j].apellido, 
+                         agenda->contactos[j+1].apellido) < 0) {
+                temp = agenda->contactos[j];
+                agenda->contactos[j] = agenda->contactos[j+1];
+                agenda->contactos[j+1] = temp;
+            }
+        }
+    }
+
 }
 
 
