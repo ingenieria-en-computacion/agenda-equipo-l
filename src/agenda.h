@@ -10,7 +10,7 @@ struct Persona{
     char nombre[30];
     char apellido[30];
     enum Mes;
-    char dia_nac;
+    char dia_nac[2];
     // tipo contacto.
     char num_tel[11];
     enum TipoTelefono;
@@ -33,7 +33,7 @@ void ordenar_contactos(Agenda *agenda);
 void ordenar_contactos_inv(Agenda *agenda);
 void mostrar_contacto(Contacto);
 void leer_contacto(Contacto *c);
-void cargar_contactos(char *filename);
-void guardar_contactos(char *filename);
+void cargar_contactos(char *filename, Agenda);
+void guardar_contactos(char *filename, Agenda);
 
 #endif // __AGENDA_H_
