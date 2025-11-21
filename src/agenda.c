@@ -1,14 +1,19 @@
 #include "agenda.h"
 #include <string.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
  * Esta función se encarga de iniciar el número de contactos a cero.
  */
 void iniciar_agenda(Agenda *agenda){
 
+    int n;
     *agenda->num_contactos = 0;
-
+    printf("Cuantos contactos desea agregar para comenzar su agenda:\n");
+    scanf("%d",&n);
+    for(int i; i<n; i++){
+        agregar_contacto(agenda);
+    }
 }
 
 
@@ -19,8 +24,15 @@ int num_contactos;
 /**
  * Esta función sirve para agregar un contacto nuevo en la agenda
  */
-void agregar_contacto(Agenda *agenda, Contacto c){
-
+void agregar_contacto(Agenda *agenda){
+    Contacto c;
+    *agenda->num_contactos ++;
+    if(agenda->num_contactos>MAX_CONTACTOS){
+        printf("Se ha alcanzado el numero maximo");
+        return EXIT_FAILURE;
+    }
+    leer_contacto(&c);
+    memcpy(agenda->contactos[MAX_CONTACTOS-1], &c, sizeof(c));
 }
 
 
@@ -31,6 +43,7 @@ void agregar_contacto(Agenda *agenda, Contacto c){
 int buscar_contacto(Agenda *agenda, char *nombre){
      for(int i = 0; i < agenda->cantidad; i++) {
         if(strcmp(agenda->contactos[i].nombre, nombre) == 0) {
+            mostrar_contacto(agenda->contactos[i]);
             return i;
         }
     }
@@ -45,6 +58,7 @@ int buscar_contacto(Agenda *agenda, char *nombre){
 int buscar_contacto_x_telefono(Agenda *agenda, char telefono[]){
     for(int i = 0; i < agenda->cantidad; i++) {
         if(strcmp(agenda->contactos[i].telefono, telefono) == 0) {
+            mostrar_contacto(agenda->contactos[i]);
             return i;
         }
     }

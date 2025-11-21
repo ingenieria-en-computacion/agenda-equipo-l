@@ -1,5 +1,6 @@
 #include "agenda.h"
 #include<stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv){
     Agenda ag_1;
