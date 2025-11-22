@@ -5,16 +5,16 @@
 
 enum TipoTelefono {CASA, MOVIL, OFICINA, OTRO};
 enum Mes{ENERO, FEBERO, MARZO, ABRIL, MAYO, JUNIO, JULIO, SEPTIEMBRE, OCTUBRE, NOVIEMBRE, DICIEMBRE};
-enum TipoContacto {AMIGO, FAMILIA, TRABAJO, OTRO};
+enum TipoContacto {AMIGO, FAMILIA, TRABAJO, CONOCIDO};
 
 struct Persona{
     char nombre[30];
     char apellido[30];
-    enum Mes;
+    char Mes
     char dia_nac[3];
-    enum TipoContacto;
+    char TipoContacto;
     char num_tel[11];
-    enum TipoTelefono;
+    char TipoTelefono;
 };
 
 typedef struct Persona Contacto;
@@ -26,15 +26,15 @@ typedef struct Agenda{
 
 
 void iniciar_agenda(Agenda *agenda);
-void agregar_contacto(Agenda *agenda);
-void imprimir_agenda(Agenda agenda);
+int agregar_contacto(Agenda *agenda);
+int imprimir_agenda(Agenda agenda);
 int buscar_contacto(Agenda *agenda, char *nombre);
-int buscar_contacto_x_telefono(Agenda *agenda, char telefono[]);
+int buscar_contacto_x_telefono(Agenda *agenda, char *telefono[]);
 void ordenar_contactos(Agenda *agenda);
 void ordenar_contactos_inv(Agenda *agenda);
 void mostrar_contacto(Contacto);
 void leer_contacto(Contacto *c);
-void cargar_contactos(char *filename, Agenda);
+void cargar_contactos(char *filename, Agenda *agenda);
 void guardar_contactos(char *filename, Agenda);
 
 #endif // __AGENDA_H_

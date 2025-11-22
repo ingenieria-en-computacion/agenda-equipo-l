@@ -8,7 +8,7 @@
 void iniciar_agenda(Agenda *agenda){
 
     int n;
-    *agenda->num_contactos = 0;
+    agenda->num_contactos = 0;
     printf("Cuantos contactos desea agregar para comenzar su agenda:\n");
     scanf("%d",&n);
     for(int i; i<n; i++){
@@ -25,15 +25,16 @@ int num_contactos;
 /**
  * Esta función sirve para agregar un contacto nuevo en la agenda
  */
-void agregar_contacto(Agenda *agenda){
+int agregar_contacto(Agenda *agenda){
     Contacto c;
-    *agenda->num_contactos ++;
+    agenda->num_contactos ++;
     if(agenda->num_contactos>MAX_CONTACTOS){
         printf("Se ha alcanzado el numero maximo");
         return EXIT_FAILURE;
     }
     leer_contacto(&c);
     memcpy(agenda->contactos[MAX_CONTACTOS-1], &c, sizeof(c));
+    return 0;
 }
 
 
@@ -48,7 +49,7 @@ int buscar_contacto(Agenda *agenda, char *nombre){
             return i;
         }
     }
-    return -1;
+    return -1;
 
 }
 
@@ -58,12 +59,12 @@ int buscar_contacto(Agenda *agenda, char *nombre){
  */
 int buscar_contacto_x_telefono(Agenda *agenda, char telefono[]){
     for(int i = 0; i < agenda->num_contactos; i++) {
-        if(strcmp(agenda->contactos[i].telefono, telefono) == 0) {
+        if(strcmp(agenda->contactos[i].num_tel, telefono) == 0) {
             mostrar_contacto(agenda->contactos[i]);
             return i;
         }
     }
-    return -1;
+    return -1;
 }
 
 
@@ -90,15 +91,15 @@ void ordenar_contactos(Agenda *a){
 void ordenar_contactos_inv(Agenda *a){
     Contacto temp;
     
-    for(int i = 0; i < agenda->cantidad - 1; i++) {
-        for(int j = 0; j < agenda->cantidad - 1 - i; j++) {
-            if(strcasecmp(agenda->contactos[j].apellido, agenda->contactos[j+1].apellido) < 0) {
-                temp = agenda->contactos[j];
-                agenda->contactos[j] = agenda->contactos[j+1];
-                agenda->contactos[j+1] = temp;
+    for(int i = 0; i < a->cantidad - 1; i++) {
+        for(int j = 0; j < a->cantidad - 1 - i; j++) {
+            if(strcasecmp(a->contactos[j].apellido, a->contactos[j+1].apellido) < 0) {
+                temp = a->contactos[j];
+                a->contactos[j] = a->contactos[j+1];
+                a->contactos[j+1] = temp;
             }
-       }
-    }
+        }
+    }
 
 }
 
@@ -107,7 +108,7 @@ void ordenar_contactos_inv(Agenda *a){
  * Función auxiliar para imprimir un contacto
  */
 void mostrar_contacto(Contacto c){
-    printf("%s %s %s %s %s %s %s\n", c.nombre, c.apellido ,c.Mes, c.dia_nac, c.TipoContacto, c.num_tel, c.TipoTelefono );
+    printf("%s %s %s %s %s %s %s\n", c.nombre, c.apellido , c.Mes, c.dia_nac, c.TipoContacto, c.num_tel, c.TipoTelefono );
 
 
 }
@@ -122,16 +123,21 @@ void leer_contacto(Contacto *c){
     scanf("%s",&c->nombre);
     printf("Ingrese el apellido del contacto:\n");
     scanf("%s",&c->apellido);
+
     printf("Ingrese el mes de nacimiento del contacto:\n");
     scanf("%d",&n);
     enum c.mes=n;//PROBABLEMENTE FALLE
+
     printf("Ingrese el dia de nacimiento del contacto:\n");
     scanf("%s",&c->dia_nac);
-    printf("Que tipo de contacto es:\n1.Amigo\n2.Familia\n3.Tra\n4.Otro\n");
+
+    printf("Que tipo de contacto es:\n1.Amigo\n2.Familia\n3.Trabajo\n4.Conocido\n");
     scanf("%d",&n);
     enum c.TipoContacto=n;//PROBABLEMENTE FALLE
+
     printf("Ingrese el numero de telefono del contacto:\n");
     scanf("%s",&c->num_tel);
+    
     printf("Que tipo de telefono es:\n1.Casa\n2.Movil\n3.Oficina\n4.Otro\n");
     scanf("%d",&n);
     enum c.TipoTelefono = n; //PROBABLEMENTE FALLE
@@ -141,7 +147,7 @@ void leer_contacto(Contacto *c){
 /**
  * Función que imprime todos los contactos de la agenda en pantalla
  */
-void imprimir_agenda(Agenda agenda){
+int imprimir_agenda(Agenda agenda){
     int dec;
     if(agenda.num_contactos == 0){
         printf("\n[!] No hay contactos en la agenda.\n");
@@ -173,12 +179,13 @@ void imprimir_agenda(Agenda agenda){
     }
 
     }while(dec!=3);
+    return 0;
 }
 
 /**
  * Función que sirve para cargar contactos escritos en un archivo a la agenda
  */
-void cargar_contactos(char *filename, Agenda *agenda){
+void cargar_contactos(char *filename, Agenda *a){
 
 }
 
@@ -186,6 +193,6 @@ void cargar_contactos(char *filename, Agenda *agenda){
 /**
  * Función que sirve para guardar todos los contactos de la agenda en un archivo
  */
-void guardar_contactos(char *filename, Agenda agenda){
+void guardar_contactos(char *filename, Agenda a){
 
 }
