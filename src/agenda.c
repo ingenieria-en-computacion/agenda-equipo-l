@@ -140,7 +140,18 @@ void leer_contacto(Contacto *c){
  * Función que imprime todos los contactos de la agenda en pantalla
  */
 void imprimir_agenda(Agenda agenda){
-
+    if(agenda.num_contactos == 0){
+        printf("\n[!] No hay contactos en la agenda.\n");
+        return;
+    }
+    
+    printf("\n LISTA DE CONTACTOS \n");
+    printf("Total de contactos: %d\n\n", agenda.num_contactos);
+    
+    for(int i = 0; i < agenda.num_contactos; i++){
+        printf("Contacto #%d\n", i + 1);
+        mostrar_contacto(agenda.contactos[i]);
+    }
 }
 
 /**
