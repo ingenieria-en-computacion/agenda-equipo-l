@@ -37,21 +37,21 @@ int main(int argc, char **argv){
             char buscador[30];
             printf("ingresa el nombre del contacto a buscar");
             scanf("%s", &buscador);
-            n = buscar_contacto(&ag_1, &buscador);
+            n = buscar_contacto(&ag_1, buscador);
             printf("Su contacto es el numero %i", n);
             break;
         case 4:
-            char buscador[11];
+            char buscador_num[11];
             printf("ingresa el telefono del contacto a buscar");
             scanf("%s", &buscador);
-            n =buscar_contacto_x_telefono(&ag_1, &buscador);
+            n =buscar_contacto_x_telefono(&ag_1, buscador_num);
             printf("Su contacto es el numero %i", n);
             break;
         case 5:
             char archivo[30];
             printf("ingresa el nombre del archivo a crear");
             scanf("%s", &archivo);
-            agregar_contacto(&archivo);
+            guardar_contactos(archivo, ag_1);
             break;
         case 6:
             return 0;

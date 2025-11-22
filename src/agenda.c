@@ -32,8 +32,7 @@ int agregar_contacto(Agenda *agenda){
         printf("Se ha alcanzado el numero maximo");
         return EXIT_FAILURE;
     }
-    leer_contacto(&c);
-    memcpy(agenda->contactos[MAX_CONTACTOS-1], &c, sizeof(c));
+    leer_contacto(&agenda->contactos[MAX_CONTACTOS-1]);
     return 0;
 }
 
@@ -91,8 +90,8 @@ void ordenar_contactos(Agenda *a){
 void ordenar_contactos_inv(Agenda *a){
     Contacto temp;
     
-    for(int i = 0; i < a->cantidad - 1; i++) {
-        for(int j = 0; j < a->cantidad - 1 - i; j++) {
+    for(int i = 0; i < a->num_contactos - 1; i++) {
+        for(int j = 0; j < a->num_contactos - 1 - i; j++) {
             if(strcasecmp(a->contactos[j].apellido, a->contactos[j+1].apellido) < 0) {
                 temp = a->contactos[j];
                 a->contactos[j] = a->contactos[j+1];
@@ -137,7 +136,7 @@ void leer_contacto(Contacto *c){
 
     printf("Ingrese el numero de telefono del contacto:\n");
     scanf("%s",&c->num_tel);
-    
+
     printf("Que tipo de telefono es:\n1.Casa\n2.Movil\n3.Oficina\n4.Otro\n");
     scanf("%d",&n);
     enum c.TipoTelefono = n; //PROBABLEMENTE FALLE

@@ -10,7 +10,7 @@ enum TipoContacto {AMIGO, FAMILIA, TRABAJO, CONOCIDO};
 struct Persona{
     char nombre[30];
     char apellido[30];
-    char Mes
+    char Mes;
     char dia_nac[3];
     char TipoContacto;
     char num_tel[11];
@@ -29,7 +29,7 @@ void iniciar_agenda(Agenda *agenda);
 int agregar_contacto(Agenda *agenda);
 int imprimir_agenda(Agenda agenda);
 int buscar_contacto(Agenda *agenda, char *nombre);
-int buscar_contacto_x_telefono(Agenda *agenda, char *telefono[]);
+int buscar_contacto_x_telefono(Agenda *agenda, char *telefono);
 void ordenar_contactos(Agenda *agenda);
 void ordenar_contactos_inv(Agenda *agenda);
 void mostrar_contacto(Contacto);
