@@ -107,7 +107,7 @@ void ordenar_contactos_inv(Agenda *a){
  * Función auxiliar para imprimir un contacto
  */
 void mostrar_contacto(Contacto c){
-    printf("%s %s %s %s %s %s %s\n", c.nombre, c.apellido , c.Mes, c.dia_nac, c.TipoContacto, c.num_tel, c.TipoTelefono );
+    printf("%s %s %s %s %s %s %s\n", c.nombre, c.apellido , c.mes_nac , c.dia_nac, c.tip_cont, c.num_tel, c.tip_tel );
 
 
 }
@@ -125,21 +125,22 @@ void leer_contacto(Contacto *c){
 
     printf("Ingrese el mes de nacimiento del contacto:\n");
     scanf("%d",&n);
-    enum c.mes=n;//PROBABLEMENTE FALLE
+    c->mes_nac = n;
+    
 
     printf("Ingrese el dia de nacimiento del contacto:\n");
     scanf("%s",&c->dia_nac);
 
     printf("Que tipo de contacto es:\n1.Amigo\n2.Familia\n3.Trabajo\n4.Conocido\n");
     scanf("%d",&n);
-    enum c.TipoContacto=n;//PROBABLEMENTE FALLE
+    c->tip_cont = n;
 
     printf("Ingrese el numero de telefono del contacto:\n");
     scanf("%s",&c->num_tel);
 
     printf("Que tipo de telefono es:\n1.Casa\n2.Movil\n3.Oficina\n4.Otro\n");
     scanf("%d",&n);
-    enum c.TipoTelefono = n; //PROBABLEMENTE FALLE
+    c->tip_tel = n;
 
 }
 

@@ -10,11 +10,11 @@ enum TipoContacto {AMIGO, FAMILIA, TRABAJO, CONOCIDO};
 struct Persona{
     char nombre[30];
     char apellido[30];
-    char Mes;
+    enum Mes mes_nac;
     char dia_nac[3];
-    char TipoContacto;
+    enum TipoContacto tip_cont;
     char num_tel[11];
-    char TipoTelefono;
+    enum TipoTelefono tip_tel;
 };
 
 typedef struct Persona Contacto;
