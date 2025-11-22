@@ -22,7 +22,7 @@ int main(int argc, char **argv){
         iniciar_agenda(&ag_1);
     }
     while(true){
-        printf("\tMENU \n1.Agregar contacto\n 2.Mostrar Agenda\n3.Buscar Contacto por nombre\n4. Buscar Contacto por telefono\n5.Guardar Contactos\n6.Salir\n");
+        printf("\tMENU \n1.Agregar contacto\n2.Mostrar Agenda\n3.Buscar Contacto por nombre\n4. Buscar Contacto por telefono\n5.Guardar Contactos\n6.Salir\n");
         scanf("%d", &dec);
 
         switch (dec)
@@ -35,21 +35,21 @@ int main(int argc, char **argv){
             break;
         case 3:
             char buscador[30];
-            printf("ingresa el nombre del contacto a buscar");
+            printf("ingresa el nombre del contacto a buscar\n");
             scanf("%s", &buscador);
             n = buscar_contacto(&ag_1, buscador);
-            printf("Su contacto es el numero %i", n);
+            printf("Su contacto es el numero %i\n", n);
             break;
         case 4:
             char buscador_num[11];
-            printf("ingresa el telefono del contacto a buscar");
+            printf("ingresa el telefono del contacto a buscar\n");
             scanf("%s", &buscador);
             n =buscar_contacto_x_telefono(&ag_1, buscador_num);
-            printf("Su contacto es el numero %i", n);
+            printf("Su contacto es el numero %i\n", n);
             break;
         case 5:
             char archivo[30];
-            printf("ingresa el nombre del archivo a crear");
+            printf("ingresa el nombre del archivo a crear\n");
             scanf("%s", &archivo);
             guardar_contactos(archivo, ag_1);
             break;

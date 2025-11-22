@@ -14,6 +14,7 @@ void iniciar_agenda(Agenda *agenda){
     for(int i; i<n; i++){
         agregar_contacto(agenda);
     }
+    /*prueba*/printf("W:%s", agenda->contactos[0].nombre);
 
 }
 
@@ -32,7 +33,9 @@ int agregar_contacto(Agenda *agenda){
         printf("Se ha alcanzado el numero maximo");
         return EXIT_FAILURE;
     }
-    leer_contacto(&agenda->contactos[MAX_CONTACTOS-1]);
+    leer_contacto(&agenda->contactos[agenda->num_contactos-1]);
+    
+    /*prueba*/printf("W:%s", agenda->contactos[0].nombre);
     return 0;
 }
 
@@ -107,8 +110,12 @@ void ordenar_contactos_inv(Agenda *a){
  * Función auxiliar para imprimir un contacto
  */
 void mostrar_contacto(Contacto c){
-    printf("%s %s %s %s %s %s %s\n", c.nombre, c.apellido , c.mes_nac , c.dia_nac, c.tip_cont, c.num_tel, c.tip_tel );
-
+    printf("%s\t", c.apellido);
+    printf("%s\t", c.nombre);
+    
+    printf("%i/%s \t", c.mes_nac, c.dia_nac);
+    printf("%i \t", c.tip_cont);
+    printf("%i: %s \t\n", c.tip_tel, c.num_tel);
 
 }
 
@@ -120,6 +127,7 @@ void leer_contacto(Contacto *c){
     int n;
     printf("Ingrese el nombre del contacto:\n");
     scanf("%s",&c->nombre);
+    
     printf("Ingrese el apellido del contacto:\n");
     scanf("%s",&c->apellido);
 
@@ -178,6 +186,8 @@ int imprimir_agenda(Agenda agenda){
         mostrar_contacto(agenda.contactos[i]);
     }
 
+    printf("De que manera desea ordenar la lista:\n 1.A-Z\n 2.Z-A\n 3.Salir\n");
+    scanf("%d",&dec);
     }while(dec!=3);
     return 0;
 }
