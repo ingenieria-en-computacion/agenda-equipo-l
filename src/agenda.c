@@ -42,7 +42,7 @@ void agregar_contacto(Agenda *agenda){
  * En caso contrario retorna -1
  */
 int buscar_contacto(Agenda *agenda, char *nombre){
-     for(int i = 0; i < agenda->num_contactos; i++) {
+    for(int i = 0; i < agenda->num_contactos; i++) {
         if(strcmp(agenda->contactos[i].nombre, nombre) == 0) {
             mostrar_contacto(agenda->contactos[i]);
             return i;
@@ -97,7 +97,7 @@ void ordenar_contactos_inv(Agenda *a){
                 agenda->contactos[j] = agenda->contactos[j+1];
                 agenda->contactos[j+1] = temp;
             }
-        }
+       }
     }
 
 }
@@ -107,7 +107,7 @@ void ordenar_contactos_inv(Agenda *a){
  * Función auxiliar para imprimir un contacto
  */
 void mostrar_contacto(Contacto c){
-    printf("%s %s %s %s %s %s\n", c.nombre, c.apellido ,c.Mes, c.dia_nac, c.num_tel, c.TipoTelefono );
+    printf("%s %s %s %s %s %s %s\n", c.nombre, c.apellido ,c.Mes, c.dia_nac, c.TipoContacto, c.num_tel, c.TipoTelefono );
 
 
 }
@@ -127,6 +127,9 @@ void leer_contacto(Contacto *c){
     enum c.mes=n;//PROBABLEMENTE FALLE
     printf("Ingrese el dia de nacimiento del contacto:\n");
     scanf("%s",&c->dia_nac);
+    printf("Que tipo de contacto es:\n1.Amigo\n2.Familia\n3.Tra\n4.Otro\n");
+    scanf("%d",&n);
+    enum c.TipoContacto=n;//PROBABLEMENTE FALLE
     printf("Ingrese el numero de telefono del contacto:\n");
     scanf("%s",&c->num_tel);
     printf("Que tipo de telefono es:\n1.Casa\n2.Movil\n3.Oficina\n4.Otro\n");
@@ -139,10 +142,27 @@ void leer_contacto(Contacto *c){
  * Función que imprime todos los contactos de la agenda en pantalla
  */
 void imprimir_agenda(Agenda agenda){
+    int dec;
     if(agenda.num_contactos == 0){
         printf("\n[!] No hay contactos en la agenda.\n");
-        return;
+        return EXIT_FAILURE;
     }
+    printf("De que manera desea ordenar la lista:\n 1.A-Z\n 2.Z-A\n 3.Salir\n");
+    scanf("%d",&dec);
+    do{
+        switch (dec)
+        {
+        case 1:
+            ordenar_contactos(&agenda);
+            break;
+        case 2:
+            ordenar_contactos_inv(&agenda);
+            break;
+        case 3:
+            return EXIT_FAILURE;
+            break;
+        }
+
     
     printf("\n LISTA DE CONTACTOS \n");
     printf("Total de contactos: %d\n\n", agenda.num_contactos);
@@ -151,6 +171,8 @@ void imprimir_agenda(Agenda agenda){
         printf("Contacto #%d\n", i + 1);
         mostrar_contacto(agenda.contactos[i]);
     }
+
+    }while(dec!=3);
 }
 
 /**

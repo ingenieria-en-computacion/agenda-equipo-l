@@ -5,13 +5,14 @@
 
 enum TipoTelefono {CASA, MOVIL, OFICINA, OTRO};
 enum Mes{ENERO, FEBERO, MARZO, ABRIL, MAYO, JUNIO, JULIO, SEPTIEMBRE, OCTUBRE, NOVIEMBRE, DICIEMBRE};
+enum TipoContacto {AMIGO, FAMILIA, TRABAJO, OTRO};
 
 struct Persona{
     char nombre[30];
     char apellido[30];
     enum Mes;
-    char dia_nac[2];
-    // tipo contacto.
+    char dia_nac[3];
+    enum TipoContacto;
     char num_tel[11];
     enum TipoTelefono;
 };
