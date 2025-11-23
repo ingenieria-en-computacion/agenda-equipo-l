@@ -1,34 +1,33 @@
 #include "agenda.h"
-#include<stdio.h>
-#include <stdlib.h>
+
 
 int main(int argc, char **argv){
     Agenda ag_1;
     int dec;
     int n;
-    printf("Cuenta con una agenda\n 1.Si 2.No");
+    Contacto temp;
+    printf("Cuenta con una agenda\n 1.Si 2.No\n");
     scanf("%d",&dec);
     if(dec%2){
-        if(argc<2){ printf("no se añadio el archivo junto con el ejecutable");return 0;}
-
-        FILE *ag_ex= fopen(argv[1], "rb");
-        if (!ag_ex) {
-            printf("Error fatal: no existe el archivo o el directorio \"%s\"\n", argv[1]);
-            return EXIT_FAILURE;
-        }
-
-        //cargar_contactos(/*&ag_ex*/);
+        cargar_contactos("imprimir.txt", &ag_1);
     }else{
         iniciar_agenda(&ag_1);
+        printf("Cuantos contactos desea agregar para comenzar su agenda:\n");
+        scanf("%d",&n);
+        for(int i=0; i<n; i++){
+            leer_contacto(&temp);
+            agregar_contacto(&ag_1, temp);
+        }
     }
     while(true){
-        printf("\tMENU \n1.Agregar contacto\n2.Mostrar Agenda\n3.Buscar Contacto por nombre\n4. Buscar Contacto por telefono\n5.Guardar Contactos\n6.Salir\n");
+        printf("\tMENU \n1.Agregar contacto\n2.Mostrar Agenda\n3.Buscar Contacto por nombre\n4. Buscar Contacto por telefono\n5.Guardar Contactos\n6.Orden\n7.Salir");
         scanf("%d", &dec);
 
         switch (dec)
         {
         case 1:
-            agregar_contacto(&ag_1);
+            leer_contacto(&temp);
+            agregar_contacto(&ag_1, temp);
             break;
         case 2:
             imprimir_agenda(ag_1);
@@ -54,10 +53,24 @@ int main(int argc, char **argv){
             guardar_contactos(archivo, ag_1);
             break;
         case 6:
-            return 0;
+            printf("De que manera desea ordenar la lista:\n 1.A-Z\n 2.Z-A\n 3.Salir\n");
+            scanf("%d",&dec);
+            switch (dec)
+            {
+            case 1:
+                ordenar_contactos(&ag_1);
+                break;
+            case 2:
+                ordenar_contactos_inv(&ag_1);
+                break;
+            case 3:
+                
+                break;
+            }
+        
         break;
-    
         default:
+            return 0;
         break;
         }
 
